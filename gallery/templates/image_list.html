@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <hr>
+        <h1>Image Gallery</h1>
+        <hr>
+        <div class="content">
+            <!-- Gallery Section -->
+            <div class="gallery">
+                {% for image in images %}
+                    <div class="gallery-item">
+                        <img src="{{ image.image.url }}" alt="{{ image.name }}">
+                        <div class="image-name">{{ image.name }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            
+            <!-- Scrolling Info Panel -->
+            <div class="info-panel">
+                <div class="scrolling-text">
+                    <p>Welcome to the Image Gallery! Explore a collection of images shared by users.</p>
+                    <p>Each image represents a unique moment captured and stored in this gallery.</p>
+                    <p>Enjoy browsing through different visuals and discover new perspectives.</p>
+                    <p>Stay updated as new features and improvements are on the way!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Section -->
+        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in images %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+        <!-- Scrolling Image Container at Bottom Right -->
+        <div class="scrolling-image-container">
+            <div class="image-track">
+                {% for image in images %}
+                    <img src="{{ image.image.url }}" alt="{{ image.name }}">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
