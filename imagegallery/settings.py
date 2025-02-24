@@ -127,3 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media settings for uploaded files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = '/admin-login/'  # Redirect unauthorized users to login
+AUTH_USER_MODEL = 'gallery.CustomUser'
+
